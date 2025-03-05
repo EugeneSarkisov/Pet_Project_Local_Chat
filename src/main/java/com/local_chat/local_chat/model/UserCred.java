@@ -13,7 +13,8 @@ public class UserCred {
     @Column(name = "id")
     int id;
     @Column(name = "user_id")
-    int userId;
+    @OneToOne(optional = false, mappedBy = "user_creds")
+    User userId;
     @Column(name = "username")
     String username;
     @Column(name = "password")

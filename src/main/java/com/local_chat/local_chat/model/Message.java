@@ -3,6 +3,9 @@ package com.local_chat.local_chat.model;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Date;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -13,11 +16,16 @@ public class Message {
     @Column(name = "id")
     int id;
     @Column(name = "user_id_sender")
-    int userIdSender;
-    @Column(name = "user_id_receiver")
-    int userIdReceiver;
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id_sender")
+    User userIdSender;
     @Column(name = "chatroom_id")
-    int chatRoomId;
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "chatroom_id")
+    Chatroom chatRoomId;
     @Column(name = "content")
     String content;
+    @Column(name = "time_stamp")
+    Date timeStamp;
+
 }
