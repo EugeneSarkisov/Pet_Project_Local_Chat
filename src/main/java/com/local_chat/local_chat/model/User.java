@@ -1,6 +1,8 @@
 package com.local_chat.local_chat.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,7 +10,9 @@ import java.util.Collection;
 
 @Entity
 @Data
+@AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Table(name = "user")
 public class User {
     @Id
@@ -19,11 +23,8 @@ public class User {
     private String name;
     @Column(name = "surname")
     private String surname;
-    @OneToOne(optional = false, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id")
-    private UserCred userCred;
-    @OneToMany(mappedBy = "userIdSender", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private Collection<Message> userMessages;
-    @OneToMany(mappedBy = "userIdCreator", fetch = FetchType.EAGER)
-    private Collection<Chatroom> userChatRooms;
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private Collection<ChatRoom> userChatRooms;
 }

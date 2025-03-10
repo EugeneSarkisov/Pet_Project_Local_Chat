@@ -1,23 +1,28 @@
 package com.local_chat.local_chat.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 @Entity
 @Data
+@AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Table(name = "user_creds")
 public class UserCred {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    int id;
+    private int id;
     @Column(name = "user_id")
-    @OneToOne(optional = false, mappedBy = "user_creds")
-    User userId;
+    @OneToOne(optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private User userId;
     @Column(name = "username")
-    String username;
+    private String username;
     @Column(name = "password")
-    String password;
+    private String password;
 
 }

@@ -13,7 +13,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>local_chat</name>
-	<description>Pet project, implemeting local chat</description>
+	<description>Pet project, implementing local chat</description>
 	<url/>
 	<licenses>
 		<license/>

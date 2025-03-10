@@ -1,6 +1,8 @@
 package com.local_chat.local_chat.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,20 +11,22 @@ import java.util.Date;
 
 @Entity
 @Data
+@AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Table(name = "chatroom")
-public class Chatroom {
+public class ChatRoom {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    int id;
+    private int id;
     @Column(name = "user_id_creator")
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id_creator")
-    User userIdCreator;
+    private User userIdCreator;
     @Column(name = "time_stamp")
-    Date timeStamp;
-    @OneToMany(mappedBy = "chatroom_id", fetch = FetchType.EAGER)
-    Collection<Message> chatRoomMessages;
+    private Date timeStamp;
+    @OneToMany(mappedBy = "chatroom", fetch = FetchType.LAZY)
+    private Collection<Message> chatRoomMessages;
 
 }
