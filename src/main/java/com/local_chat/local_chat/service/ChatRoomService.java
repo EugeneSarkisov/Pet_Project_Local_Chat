@@ -1,5 +1,7 @@
 package com.local_chat.local_chat.service;
 
+import com.local_chat.local_chat.DTO.request.ChatRoomCreationRequest;
+import com.local_chat.local_chat.DTO.response.ChatRoomCredResponse;
 import com.local_chat.local_chat.model.ChatRoom;
 import com.local_chat.local_chat.repository.ChatRoomRepository;
 import com.local_chat.local_chat.repository.UserRepository;
@@ -7,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -15,27 +16,26 @@ public class ChatRoomService {
     private final ChatRoomRepository chatRoomRepository;
     private final UserRepository userRepository;
 
-    public Optional<Integer> getChatRoomId(int userCreatorId, boolean createIfNotExist){
-        return chatRoomRepository
-                .findByUserIdCreator(userRepository.findUserById(userCreatorId))
-                .map(ChatRoom::getId)
-                .or(() -> {
-                    if(createIfNotExist){
-                        ChatRoom chat = createChat(userCreatorId);
-                        return Optional.of(chat.getId());
-                    }
-                    return Optional.empty();
-                });
-
+    public ChatRoomCredResponse proceedInChat(ChatRoom chatRoom){
+        var chatRoomId = chatRoom.getId();
+       chatRoom.setUserNumber(chatRoom.getUserNumber() - 1); //TODO EXCEPTION
+       chatRoomRepository.save(chatRoom);
+       return ChatRoomCredResponse.builder()
+               .chatRoomId(chatRoomId)
+               .build();
     }
 
-    private ChatRoom createChat(int userCreatorId){
+    private ChatRoomCredResponse createChat(int userCreatorId, ChatRoomCreationRequest request){
         var chatRoom = ChatRoom
                 .builder()
                 .userIdCreator(userRepository.findUserById(userCreatorId))
                 .timeStamp(new Date())
+                .chatName(request.getChatName())
+                .userNumber(request.getChatUserNumber())
                 .build();
         chatRoomRepository.save(chatRoom);
-        return chatRoom;
+        return ChatRoomCredResponse.builder()
+                .chatRoomId(chatRoom.getId())
+                .build();
     }
 }

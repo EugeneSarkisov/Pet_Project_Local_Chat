@@ -26,6 +26,10 @@ public class ChatRoom {
     private User userIdCreator;
     @Column(name = "time_stamp")
     private Date timeStamp;
+    @Column(name = "user_number")
+    private int userNumber;
+    @Column(name = "chat_name")
+    private String chatName;
     @OneToMany(mappedBy = "chatroom", fetch = FetchType.LAZY)
     private Collection<Message> chatRoomMessages;
 

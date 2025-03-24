@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 public class ChatController {
     private final MessageService messageService;
-
     @MessageMapping("/chat")
     @SendTo("/chat/messages")
     public void processMessage(@Payload Message message){

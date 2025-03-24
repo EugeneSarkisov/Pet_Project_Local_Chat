@@ -13,15 +13,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MessageService {
     private final MessageRepository messageRepository;
-    private final ChatRoomService chatRoomService;
     private final ChatRoomRepository chatRoomRepository;
     private final UserRepository userRepository;
 
     public Message save(Message message) {
-        var chatId = chatRoomService
-                .getChatRoomId(message.getUserIdSender().getId(), true)
-                .orElseThrow();
-        message.setChatRoomId(chatRoomRepository.findById(chatId));
+        var chatId = message.getChatRoomId();
+        message.setChatRoomId(chatId);
         messageRepository.save(message);
         return message;
     }
