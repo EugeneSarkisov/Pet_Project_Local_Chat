@@ -1,0 +1,103 @@
+.SignUp{
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: cadetblue;
+}
+
+.container_signin{
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    width: 80%;
+    
+}
+
+.signin__back_to_home{
+    align-self: start;
+    border: none;
+    outline: none;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.signin__title{
+    margin-bottom: 30px;
+}
+.signin__wrapper {
+    align-self: center;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    border: 1px #a89e9e solid;
+    padding: 20px;
+    background-color:#ffffff;
+}
+
+.signin__input{
+    margin-bottom: 20px;
+    height: 35px;
+}
+
+.signin__forgotpass {
+    margin-top: -10px;
+    width: fit-content;
+    border: none;
+    outline: none;
+    margin-bottom: 40px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.signin__signin {
+    height: 40px;
+    background-color: #362cc3;
+    color: white;
+    font-weight: 600;
+}
+
+.signup{
+    margin-top: 40px;
+    align-self: center;
+}
+
+.signup__button {
+    width: fit-content;
+    border: none;
+    outline: none;
+    color: #362cc3;
+    cursor: pointer;
+}
+
+.Confirmation {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+}
+
+.success_title{
+    align-self: start;
+    width: 220px;
+    font-size: larger;
+    margin-bottom: 20px;
+}
+
+.go_to_home{
+    height: 40px;
+    background-color: #362cc3;
+    color: white;
+    font-weight: 600;
+}
+
+.Tryagain {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: cadetblue;
+}

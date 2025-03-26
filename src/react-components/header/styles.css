@@ -31,3 +31,19 @@ align-self: center;
 .header-home-button:hover {
   background-color: #0056b3;
 }
+
+.header-login-button{
+  width: 20%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+.header-login-button:hover {
+background-color: #0056b3;
+}
+
